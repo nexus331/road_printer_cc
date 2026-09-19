@@ -1,7 +1,7 @@
 -- Road Printer Program CC Tweaked Turtles
 
 -- Rednet information
-local modemSide = peripheral.find("modem")
+local modemSide = "right"
 local rednetProtocol = "rpnp"
 
 
@@ -10,15 +10,21 @@ local blocks = 0
 
 
 function create_road()
+    turtle.select(1)
+    turtle.refuel()
+    print("Refueled!")
     turtle.select(2)
     print("Selected slot 2 for road material.")
+    
 
     for i = 1, blocks do
         turtle.placeDown()
         turtle.forward()
         turtle.digDown()
+        turtle.placeDown()
     end
-    rednet.send(rednetProtocol, "r_complete")
+    rednet.broadcast("r_complete", rednetProtocol)
+    print("Complete!")
 end
 
 
@@ -28,7 +34,7 @@ print("Waiting for information...")
 
 rednet.open(modemSide)
 while true do
-    local id, message = rednetProtocol.receive(rednetProtocol)
+    local id, message = rednet.receive(rednetProtocol)
 
     blocks = tonumber(message)
     create_road()
