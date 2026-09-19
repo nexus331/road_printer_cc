@@ -22,6 +22,7 @@ function create_road()
         turtle.forward()
         turtle.digDown()
         turtle.placeDown()
+        turtle.forward()
     end
     rednet.broadcast("r_complete", rednetProtocol)
     print("Complete!")
