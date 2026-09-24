@@ -1,5 +1,5 @@
 -- Road Printer Program CC Tweaked Turtles
-
+-- Version 1.1
 -- Rednet information
 local modemSide = "right"
 local rednetProtocol = "rpnp"
@@ -32,12 +32,13 @@ function create_road()
     end
     turtle.select(selectedSlot)
     end
-    
+
         turtle.placeDown()
         turtle.forward()
         turtle.digDown()
         turtle.placeDown()
         turtle.forward()
+        turtle.placeDown()
     end
     rednet.broadcast("r_complete", rednetProtocol)
     print("Complete!")
