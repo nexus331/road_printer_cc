@@ -4,6 +4,23 @@
 local modemSide = "left"
 local rednetProtocol = "rpnp"
 
+-- Inventory Checking
+function check_inv()
+    local selectedSlot = 1
+    turtle.select(selectedSlot)
+
+    local currentCount = turtle.getItemCount(selectedSlot)
+
+    if currentCount == 0 then 
+    selectedSlot = selectedSlot + 1
+
+    if selectedSlot == 17 then
+    selectedSlot = selectedSlot - 16
+    end
+    turtle.select(selectedSlot)
+    end
+end
+
 
 -- Variables
 local blocks = 0
@@ -18,26 +35,9 @@ function create_road()
 
     for i = 1, blocks do
 
-    local selectedSlot = 1
-    turtle.select(selectedSlot)
-
-    local currentCount = turtle.getItemCount(selectedSlot)
-
-    if currentCount == 0 then 
-    selectedSlot = selectedSlot + 1
-
-    if selectedSlot == 17 then
-    selectedSlot = selectedSlot - 16
-    end
-    turtle.select(selectedSlot)
-    end
-
-        turtle.placeDown()
-        turtle.forward()
-        turtle.digDown()
-        turtle.placeDown()
         turtle.forward()
         turtle.placeDown()
+        check_inv()
     end
     rednet.broadcast("r_complete", rednetProtocol)
     print("Complete!")
