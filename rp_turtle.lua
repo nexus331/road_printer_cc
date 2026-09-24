@@ -18,6 +18,21 @@ function create_road()
     
 
     for i = 1, blocks do
+
+    local selectedSlot = 1
+    turtle.select(selectedSlot)
+
+    local currentCount = turtle.getItemCount(selectedSlot)
+
+    if currentCount == 0 then 
+    selectedSlot = selectedSlot + 1
+
+    if selectedSlot == 17 then
+    selectedSlot = selectedSlot - 16
+    end
+    turtle.select(selectedSlot)
+    end
+    
         turtle.placeDown()
         turtle.forward()
         turtle.digDown()
@@ -39,4 +54,25 @@ while true do
 
     blocks = tonumber(message)
     create_road()
+end
+
+-- Turtle Inventory Checker
+
+local selectedSlot = 1
+turtle.select(selectedSlot)
+
+while true do
+
+local currentCount = turtle.getItemCount(selectedSlot)
+
+
+if currentCount == 0 then 
+selectedSlot = selectedSlot + 1
+
+if selectedSlot == 17 then
+    selectedSlot = selectedSlot - 16
+end
+turtle.select(selectedSlot)
+end
+
 end
