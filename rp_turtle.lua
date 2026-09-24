@@ -15,7 +15,6 @@ function create_road()
     print("Refueled!")
     turtle.select(2)
     print("Selected slot 2 for road material.")
-    
 
     for i = 1, blocks do
 
@@ -43,7 +42,6 @@ function create_road()
     rednet.broadcast("r_complete", rednetProtocol)
     print("Complete!")
 end
-
 
 -- Main program
 print("Road Printer Program CC Tweaked Turtles")
