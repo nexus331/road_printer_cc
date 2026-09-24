@@ -1,7 +1,7 @@
 -- Road Printer Program CC Tweaked Turtles
 -- Version 1.1
 -- Rednet information
-local modemSide = "right"
+local modemSide = "left"
 local rednetProtocol = "rpnp"
 
 
@@ -55,25 +55,4 @@ while true do
 
     blocks = tonumber(message)
     create_road()
-end
-
--- Turtle Inventory Checker
-
-local selectedSlot = 1
-turtle.select(selectedSlot)
-
-while true do
-
-local currentCount = turtle.getItemCount(selectedSlot)
-
-
-if currentCount == 0 then 
-selectedSlot = selectedSlot + 1
-
-if selectedSlot == 17 then
-    selectedSlot = selectedSlot - 16
-end
-turtle.select(selectedSlot)
-end
-
 end
