@@ -35,9 +35,9 @@ function create_road()
 
     for i = 1, blocks do
 
+        check_inv()
         turtle.forward()
         turtle.placeDown()
-        check_inv()
     end
     rednet.broadcast("r_complete", rednetProtocol)
     print("Complete!")
